@@ -106,9 +106,8 @@ class AuthActivity : BaseActivity() {
                     launch {
                         map { it.error }
                             .distinctUntilChanged()
-                            .drop(1) // drop initial value so it doesnt get triggered on launch
                             .collectLatest { error ->
-                                showDialog(error ?: "Something went wrong")
+                                error?.let { showDialog(it) }
                             }
                     }
                 }

@@ -10,7 +10,9 @@ import org.gabrieal.simplefirebaseauth.helper.isEmailValid
 import org.gabrieal.simplefirebaseauth.helper.isPasswordValid
 
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+) : ViewModel() {
     private val _uiState = MutableStateFlow(AuthUiState())
     val uiState: StateFlow<AuthUiState> = _uiState
 
@@ -52,8 +54,6 @@ class AuthViewModel : ViewModel() {
 
     fun authenticateUser() {
         setLoading(true)
-
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
         auth.signInWithEmailAndPassword(uiState.value.email, uiState.value.password)
             .addOnSuccessListener {
                 Log.d("AuthViewModel", "Authentication successful")
@@ -68,8 +68,6 @@ class AuthViewModel : ViewModel() {
 
     fun registerViaFirebase() {
         setLoading(true)
-
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(uiState.value.email, uiState.value.password)
             .addOnSuccessListener { task ->
                 Log.d("AuthViewModel", "Authentication successful")

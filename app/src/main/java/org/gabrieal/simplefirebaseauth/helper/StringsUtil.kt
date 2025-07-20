@@ -1,7 +1,8 @@
 package org.gabrieal.simplefirebaseauth.helper
 
 fun String.isEmailValid(): Boolean {
-    return android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+    return Regex(emailRegex).matches(this)
 }
 
 //simple validation
