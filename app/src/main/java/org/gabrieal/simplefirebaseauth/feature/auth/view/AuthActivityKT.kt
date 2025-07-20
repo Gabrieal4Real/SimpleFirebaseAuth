@@ -49,7 +49,7 @@ class AuthActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            viewModel.loginViaFirebase()
+            viewModel.authenticateUser()
         }
 
         binding.authToggleTV.setOnClickListener {

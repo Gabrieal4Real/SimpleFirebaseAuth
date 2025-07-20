@@ -50,7 +50,7 @@ class AuthViewModel : ViewModel() {
         _uiState.update { it.copy(isRegisterMode = !uiState.value.isRegisterMode) }
     }
 
-    fun loginViaFirebase() {
+    fun authenticateUser() {
         setLoading(true)
 
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
